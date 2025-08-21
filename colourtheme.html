@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day/Night Mode Interface</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            display: flex;
+        }
+        
+        .mode-container {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        /* Day Mode Styles */
+        .day-mode {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f6f4 100%);
+            color: #422d2a;
+        }
+        
+        .day-mode .header {
+            color: #422d2a;
+            padding: 12px 0;
+            font-weight: bold;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .day-mode .logo {
+            width: 150px;
+            height: 100px;
+            background-image: url(images/2022\ logo.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            /* Remove any background color that might be creating a box */
+            background-color: transparent !important;
+        }
+        
+        .day-mode .title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        
+        .day-mode .subtitle {
+            font-size: 18px;
+            color: #6b513f;
+            margin-bottom: 40px;
+        }
+        
+        .day-mode .card {
+            background: linear-gradient(135deg, #ffffff 0%, #faf8f6 100%);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 24px rgba(66, 45, 42, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid #bc9e7b;
+        }
+        
+        .day-mode .card h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #422d2a;
+        }
+        
+        .day-mode .card p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            color: #6b513f;
+        }
+        
+        .day-mode .stats {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 24px;
+            color: #6b513f;
+        }
+        
+        .day-mode .btn {
+            background: #bc9e7b;
+            color: white;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(188, 158, 123, 0.3);
+        }
+        
+        .day-mode .btn:hover {
+            background: #936f45;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(147, 111, 69, 0.4);
+        }
+        
+        /* Night Mode Styles */
+        .night-mode {
+            background: linear-gradient(135deg, #000000 0%, #362f26 100%);
+            color: #B79d7f;
+        }
+        
+        .night-mode .header {
+            color: #B79d7f;
+            padding: 12px 0;
+            font-weight: bold;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .night-mode .logo {
+            width: 150px;
+            height: 100px;
+            background-image: url(images/new\ colour\ logo\ \(1\).jpg);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            /* Remove any background color that might be creating a box */
+            background-color: transparent !important;
+        }
+        
+        .night-mode .title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+        
+        .night-mode .subtitle {
+            font-size: 18px;
+            color: #6c6252;
+            margin-bottom: 40px;
+        }
+        
+        .night-mode .card {
+            background: rgba(66, 63, 70, 0.8);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        .night-mode .card h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #ffffff;
+        }
+        
+        .night-mode .card p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            color: #6c6252;
+        }
+        
+        .night-mode .stats {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 24px;
+            color: #6c6252;
+        }
+        
+        .night-mode .btn {
+            background: #B79d7f;
+            color: #000000;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(183, 157, 127, 0.3);
+        }
+        
+        .night-mode .btn:hover {
+            background: #6c6252;
+            color: #B79d7f;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(183, 157, 127, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .mode-container {
+                padding: 20px;
+                gap: 20px;
+            }
+            
+            .title {
+                font-size: 36px !important;
+            }
+            
+            .card {
+                padding: 20px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Day Mode -->
+    <div class="mode-container day-mode">
+        <div class="header">
+            <div class="logo"></div>
+        </div>
+        
+        <div>
+            <h1 class="title">Day Mode</h1>
+            <p class="subtitle">Light Theme</p>
+        </div>
+        
+        <div class="card">
+            <h3>Professional Networks</h3>
+            <p>Connect with industry professionals and expand your career opportunities.</p>
+            <button class="btn">Join Now</button>
+        </div>
+        
+        <div class="card">
+            <h3>Admin Dashboard</h3>
+            <div class="stats">
+                Active Members: 1,247<br>
+                Active Groups: 89
+            </div>
+            <button class="btn">View Details</button>
+        </div>
+    </div>
+    
+    <!-- Night Mode -->
+    <div class="mode-container night-mode">
+        <div class="header">
+            <div class="logo"></div>
+        </div>
+        
+        <div>
+            <h1 class="title">Night Mode</h1>
+            <p class="subtitle">Dark Theme</p>
+        </div>
+        
+        <div class="card">
+            <h3>Professional Networks</h3>
+            <p>Connect with industry professionals and expand your career opportunities.</p>
+            <button class="btn">Join Now</button>
+        </div>
+        
+        <div class="card">
+            <h3>Admin Dashboard</h3>
+            <div class="stats">
+                Active Members: 1,247<br>
+                Active Groups: 89
+            </div>
+            <button class="btn">View Details</button>
+        </div>
+    </div>
+</body>
+</html>
